@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  xmrig:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-03-27T19:56:54.108160272Z"
+    description: A Helm chart for Kubernetes
+    digest: 3492b340e26f0e2da8525057bca39225cd0c9ba3d467c5928e0c75b35947804f
+    name: xmrig
+    type: application
+    urls:
+    - https://github.com/dza89/xmrig/releases/download/xmrig-0.1.0/xmrig-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-03-27T19:56:54.108166072Z"
