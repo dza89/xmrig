@@ -5,9 +5,9 @@ permissions:
 
 on:
   push:
-    branches: [ "main" ]
-    paths:
-      - container/**
+    tags:        
+      - container-*
+
 
 jobs:
   build:
