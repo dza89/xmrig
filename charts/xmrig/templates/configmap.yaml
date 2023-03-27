@@ -9,4 +9,4 @@ metadata:
     helm.sh/chart: {{ include "xmrig.chart" $ }}
 data:
   config.json: |-
-{{ .Files.Get "config.json" | indent 4 }}
+{{ .Files.Get "xmrig-config.json" | indent 4 }}
