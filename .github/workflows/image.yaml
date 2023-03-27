@@ -5,9 +5,10 @@ permissions:
 
 on:
   push:
-    tags:        
-      - container-*
-
+    branches:
+      - main
+    paths:
+      - container/**
 
 jobs:
   build:
