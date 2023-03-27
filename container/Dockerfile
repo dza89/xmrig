@@ -1,5 +1,5 @@
 FROM alpine as prepare
-
+#
 RUN echo 'https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 RUN apk add git make cmake libstdc++ gcc g++ automake libtool autoconf \
     linux-headers hwloc-dev libuv-dev openssl libressl-dev
