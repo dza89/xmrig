@@ -8,5 +8,5 @@ metadata:
     app.kubernetes.io/managed-by: {{ $.Release.Service }}
     helm.sh/chart: {{ include "xmrig.chart" $ }}
 data:
-  config.json: |-
-{{ .Files.Get "xmrig-config.json" | indent 4 }}
+  config.json: {{ .Values.config | toJson }}
+  {{ end }}
