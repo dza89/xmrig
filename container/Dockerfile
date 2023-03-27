@@ -15,9 +15,6 @@ RUN cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON -DHWLOC_LIBRARY=/usr/li
     -DWITH_OPENCL=OFF -DWITH_CUDA=OFF && \
     make -j$(nproc) 
 
-ADD config.json /xmrig/build/conf/
-
-FROM ${ARCH}alpine
-
+FROM alpine
 COPY --from=prepare /xmrig/build/xmrig /xmrig/xmrig
 ENTRYPOINT ["/xmrig/xmrig", "-c", "opt/xmrig/config.json"]
