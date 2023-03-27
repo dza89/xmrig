@@ -4,4 +4,4 @@ RUN mkdir /opt/xmrig && \
     tar -zxvf xmrig-6.19.1-linux-static-x64.tar.gz --strip-components 1 -C /opt/xmrig && \
     mv /opt/xmrig/xmrig /xmrig
 
-ENTRYPOINT [/xmrig -c opt/xmrig/config.json]
+ENTRYPOINT ["/xmrig", "-c", "opt/xmrig/config.json"]
