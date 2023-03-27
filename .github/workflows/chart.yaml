@@ -1,6 +1,7 @@
 name: Helm Chart Release
 
 permissions:
+  contents: write
   packages: write
 
 on:
