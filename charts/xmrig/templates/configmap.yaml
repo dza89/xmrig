@@ -9,4 +9,3 @@ metadata:
     helm.sh/chart: {{ include "xmrig.chart" $ }}
 data:
   config.json: {{ .Values.config | toJson }}
-  {{ end }}
