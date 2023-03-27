@@ -1,7 +1,23 @@
-FROM alpine
-RUN mkdir /opt/xmrig && \
-    wget "https://github.com/xmrig/xmrig/releases/download/v6.19.1/xmrig-6.19.1-linux-static-x64.tar.gz" && \
-    tar -zxvf xmrig-6.19.1-linux-static-x64.tar.gz --strip-components 1 -C /opt/xmrig && \
-    mv /opt/xmrig/xmrig /xmrig
+FROM alpine as prepare
 
-ENTRYPOINT ["/xmrig", "-c", "opt/xmrig/config.json"]
+RUN echo 'https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
+RUN apk add git make cmake libstdc++ gcc g++ automake libtool autoconf \
+    linux-headers hwloc-dev libuv-dev openssl-dev
+
+RUN git clone https://github.com/xmrig/xmrig.git /xmrig && \
+    cd /xmrig && git checkout v6.19.1
+
+WORKDIR /xmrig/scripts
+RUN mkdir -p /xmrig/build && chmod 755 *.sh\
+    ./build_deps.sh
+WORKDIR /xmrig/build
+RUN cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON -DHWLOC_LIBRARY=/usr/lib/libhwloc.so \
+    -DWITH_OPENCL=OFF -DWITH_CUDA=OFF && \
+    make -j$(nproc) 
+
+ADD config.json /xmrig/build/conf/
+
+FROM ${ARCH}alpine
+
+COPY --from=prepare /xmrig/build/xmrig /xmrig/xmrig
+ENTRYPOINT ["/xmrig/xmrig", "-c", "opt/xmrig/config.json"]
