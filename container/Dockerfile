@@ -1,8 +1,8 @@
 FROM alpine as prepare
 
 RUN echo 'https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
-RUN apk add git make cmake openssl libstdc++ gcc g++ automake libtool autoconf \
-    linux-headers hwloc-dev libuv-dev openssl-dev
+RUN apk add git make cmake libstdc++ gcc g++ automake libtool autoconf \
+    linux-headers hwloc-dev libuv-dev openssl-dev libssl-dev
 
 RUN git clone https://github.com/xmrig/xmrig.git /xmrig && \
     cd /xmrig && git checkout v6.19.1
