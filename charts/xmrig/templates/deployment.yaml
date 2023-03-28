@@ -35,6 +35,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /opt/xmrig
+            - name: modules
+              mountPath: /lib/modules
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -53,3 +55,7 @@ spec:
         - name: config
           configMap:
               name: {{ include "xmrig.fullname" $ }}-config
+        - hostPath:
+            path: /lib/modules
+            type: Directory
+          name: modules
