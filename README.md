@@ -6,6 +6,7 @@ A plain xmrig container and deployment, nothing more nothing less.
 
 Minimum values needed:
 All configurables from [xmrig-example-configs](https://github.com/xmrig/xmrig/blob/master/src/config.json) can be set under config.
+A full list can be found in [chart value file](./charts/xmrig/values.yaml).
 
 ```yaml
 config:
